@@ -3,23 +3,19 @@ let oneEuroIs = {
     "USD": 1.07,
     "GBP": 0.87,
 }
-let oneYenIs = {
-    "GBP": 0.005542857142857143
-}
-let oneDollarIs = {
-    "JPY": 146.2616
-}
 
 function fromEuroToDollar(euros){
     return euros * oneEuroIs.USD
 }
 
 function fromYenToPound(yen){
-    return yen * oneYenIs.GBP
+    return yen / oneEuroIs.JPY * oneEuroIs.GBP 
 }
 
 function fromDollarToYen(dollar){
-    return Math.round(dollar * oneDollarIs.JPY * 10000) / 10000;
+    return dollar / oneEuroIs.USD * oneEuroIs.JPY
 }
 
 module.exports = {fromEuroToDollar,fromYenToPound,fromDollarToYen}
+
+console.log(fromDollarToYen(1)) 
